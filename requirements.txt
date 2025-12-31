@@ -1,2 +1,4 @@
 hopsworks
 pandas
+python-dotenv
+dotenv
