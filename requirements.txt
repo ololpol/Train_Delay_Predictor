@@ -1,4 +1,5 @@
-hopsworks==4.2
+hopsworks[python]==4.6
+hsfs
 pandas
 python-dotenv
 dotenv
