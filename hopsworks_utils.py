@@ -30,7 +30,7 @@ class HopsworksInterface():
         self.project = hopsworks.login()
         self.fs = self.project.get_feature_store(self.project_name)
 
-    def push(self, df: pd.DataFrame, fg_name: str, primary_key: str = None):
+    def push(self, df: pd.DataFrame, fg_name: str, primary_key: str = None, desc: str = "No description provided"):
         pk = primary_key
         if primary_key == None:
             pk = df.columns[0]
