@@ -4,3 +4,6 @@ pandas
 python-dotenv
 dotenv
 pyarrow
+scikit-learn
+xgboost
+matplotlib
