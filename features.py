@@ -176,13 +176,31 @@ def add_weather_rolling_features_if_present(d: pd.DataFrame, windows_h: List[int
     out = out.reset_index()
     return out
 
-def build_features(raw_df: pd.DataFrame) -> pd.DataFrame:
+def add_station_delay_features(d: pd.DataFrame, windows_h: List[int] = [3, 6]) -> pd.DataFrame:
+    """Add features related to station delay statistics."""
+    out = d.copy()
+    
+    # Average delay per station
+    station_avg_delay = (
+        out.groupby("station_code")["delay_min"]
+           .mean()
+           .rename("station_avg_delay")
+    )
+    out = out.merge(station_avg_delay, on="station_code", how="left")
+
+    # Rolling average delay per station over specified windows
+    #TODO
+    
+    return out
+
+def build_features(raw_df: pd.DataFrame, windows_h = [3,6], windows_min = [15,30]) -> pd.DataFrame:
     """Master pipeline function."""
     df = raw_df.copy()
     df = add_calendar_features(df)
     df = add_train_lag_features(df)
-    df = add_station_network_state_features(df)
+    df = add_station_network_state_features(df, windows_min=windows_min)
     df = detect_trigger_time(df)
-    df = add_reactive_early_dynamics(df)
-    df = add_weather_rolling_features_if_present(df)
+    #df = add_reactive_early_dynamics(df)
+    df = add_weather_rolling_features_if_present(df, windows_h=windows_h)
+    df = add_station_delay_features(df, windows_h=windows_h)
     return df
