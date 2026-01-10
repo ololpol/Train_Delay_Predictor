@@ -1,14 +1,21 @@
 # Dashboard
 
-
+Calibration curve:
 
 ![Forecast](./assets/img/predictive_calibration_curve.png)
 
-
-hi there
+Precicion-Recall Curve
+![Hindcast](./assets/img/predictive_pr_curve.png)
 
 # Model Performance Monitoring
 
-good moring
 
-![Hindcast](./assets/img/predictive_pr_curve.png)
+Station delay risk map
+
+![Risk-map"](./assets/img/station_delay_risk_map.png)
+
+
+Daily top risk stations
+![Top risk"](./assets/img/top10_station_delay_risk.png)
+
+
