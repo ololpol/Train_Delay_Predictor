@@ -1,7 +1,6 @@
 # Dashboard
 
 
-{% include air-quality.html %}
 
 ![Forecast](./assets/img/predictive_calibration_curve.png)
 
