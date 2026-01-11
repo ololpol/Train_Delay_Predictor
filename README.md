@@ -20,17 +20,12 @@ Create an environment (example):
 python -m venv .venv
 source .venv/bin/activate
 pip install -U pip
-pip install pandas numpy scikit-learn joblib matplotlib pyarrow
-```
-
-Hopswork:
-```bash
-pip install hopsworks
+pip install -r requirements
 ```
 
 ### 1) Part 01 — Backfill and label
 Open and run:
-- `1_train_feature_backfill-mos.ipynb`
+- `1_train_feature_backfill.ipynb`
 
 - Backfills historical train-stop events from Trafikverket’s Open API, engineers labels, and writes in Hopswork.
   What it does:
@@ -38,7 +33,7 @@ Open and run:
 - Builds/standardizes timestamps in Europe/Stockholm.
 - Computes labels (`y_delay_within_horizon`, `final_delay_min`, `additional_delay_min`).
 - Saves:
-      in a feature store in hopswork
+      in a feature store in hopswork(`train_stop_events_labeled` feature group)
 
 Required environment variable**
 - `API_KEY_TRAFIK`: Trafikverket API key used in Part 01.
@@ -70,10 +65,9 @@ It loads the Part 02 splits and trains:
 - Metrics/plots (Average Precision, Brier score, calibration curve)
 
 Saved to `data/models/`:
-- `predictive_baseline`
 - `predictive_model.pkl`
-- `predictive_calibrator`
-- `predictive_meta` (params and eval metrics)
+- `calibrator.pnk`
+- `predictive_meta.json` (params and eval metrics)
 
 #### Reactive model (additional delay)
 - Baseline `DummyRegressor`
@@ -82,8 +76,8 @@ Saved to `data/models/`:
 - Metrics/plots (MAE/RMSE + coverage diagnostics)
 
 Saved to `data/models/`:
-- `reactive_model` 
-- `reactive_meta`
+- `calibrator.pnk` 
+- `reactive_meta.json`
 
 
 ### 4) Part 04 — Batch inference + alerts
@@ -91,15 +85,15 @@ Open and run:
 - `4_train_batch_inference.ipynb`
 
 Inputs:
--  `data/train_stop_events_labeled`)
+-  `train_stop_events_labeled` feature group from Hopsworks
 - Part 02 metadata (`data/feature_pipeline_outputs/feature_metadata.json`)
 - Part 03 models (`data/models/`)
 
 Outputs:
-- `data/predictions_full` + `data/predictions_full.csv`
-- `data/predictions_early` + `data/predictions_early.csv`
-- `data/alerts_first_per_train.csv` (first high-risk event per train)
-- `data/alerts_train_max_risk.csv` (max-risk event per train)
+- `predictions_full` feature group in Hopsworks
+- `predictions_early` feature group in Hopsworks
+- `assets/img/station_delay_risk_map.png`
+- `assets/img/top10_station_delay_risk.png`
 
 
 
@@ -171,10 +165,10 @@ Inference window (Part 04):
 
 ## Typical end-to-end run
 
-1. `1_train_feature_backfill-mos.ipynb` → creates `data/train_stop_events_labeled`
-2. `2_train_feature_pipeline.ipynb` → creates `data/feature_pipeline_outputs/` + `feature_metadata.json`
-3. `3_train_training_pipeline-utan-reaktiv.ipynb` → creates `data/models/*`
-4. `4_train_batch_inference.ipynb` → creates `data/predictions_*` + `data/alerts_*`
+1. `1_train_feature_backfill.ipynb` → creates `train_stop_events_labeled`
+2. `2_train_feature_pipeline.ipynb` → creates `Train and test splits` + `feature_metadata.json`
+3. `3_train_training_pipeline.ipynb` → creates `data/models/*`
+4. `4_train_batch_inference.ipynb` → creates `docs/assets/*`
 
 ---
 
