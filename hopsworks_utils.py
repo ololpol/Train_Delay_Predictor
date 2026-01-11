@@ -52,7 +52,7 @@ class HopsworksInterface():
 
             #print(pk in df.columns)
             delay_fg.insert(df, write_options={'wait_for_job': True}, storage="spark")
-            print('Inserted historical data into feature group "train_delay_features"')
+            print('Inserted historical data into feature group:', fg_name)
     def get(self, fg_name) -> pd.DataFrame:
         fg = self.fs.get_feature_group(
             name=fg_name,

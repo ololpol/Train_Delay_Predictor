@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-01-11T17:37:47Z",
+  "created_utc": "2026-01-11T22:03:55Z",
   "splits": {
     "train_dates": [
       "2026-01-08",
@@ -63,7 +63,8 @@
     "weather_rain_rollmean_6h",
     "weather_snowfall_rollmean_6h",
     "weather_windspeed_10m_rollmean_6h",
-    "station_avg_delay"
+    "station_avg_delay",
+    "station_code"
   ],
   "react_feature_columns": [
     "activityid",
@@ -117,6 +118,7 @@
     "weather_rain_rollmean_6h",
     "weather_snowfall_rollmean_6h",
     "weather_windspeed_10m_rollmean_6h",
-    "station_avg_delay"
+    "station_avg_delay",
+    "station_code"
   ]
 }
