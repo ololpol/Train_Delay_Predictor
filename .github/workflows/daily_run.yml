@@ -30,7 +30,7 @@ jobs:
       - name: execute python workflows from bash script
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-          API_KEY_TRAFIKVERKET: ${{ secrets.API_KEY_TRAFIKVERKET }}
+          API_KEY_TRAFIK: ${{ secrets.API_KEY_TRAFIK }}
           HOPSWORKS_PROJECT: 'Train'
         run: |
           ipython 1_train_feature_backfill.ipynb
