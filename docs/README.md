@@ -1,11 +1,7 @@
 # Dashboard
 
-Calibration curve:
-
-![Forecast](./assets/img/predictive_calibration_curve.png)
-
-Precicion-Recall Curve
-![Hindcast](./assets/img/predictive_pr_curve.png)
+Feature importance
+![FeatImp](./assets/img/feature_importances.png)
 
 # Model Performance Monitoring
 
