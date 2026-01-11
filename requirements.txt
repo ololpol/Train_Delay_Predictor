@@ -12,3 +12,4 @@ openmeteo-requests
 retry-requests
 geopandas
 ipython
+nbformat
