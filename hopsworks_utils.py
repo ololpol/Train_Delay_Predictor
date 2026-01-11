@@ -33,16 +33,24 @@ class HopsworksInterface():
     def push(self, df: pd.DataFrame, fg_name: str, primary_key: str = None, desc: str = "No description provided"):
         pk = primary_key
         if primary_key == None:
-            pk = df.columns[0]
+            pk = [df.columns[0]]
         if df.empty:
             print('No data to insert into feature store.')
+            delay_fg = self.fs.get_or_create_feature_group(
+                name=fg_name,
+                version=1, #TODO idk
+                description=desc,
+                primary_key=pk,
+            )
         else:
             delay_fg = self.fs.get_or_create_feature_group(
                 name=fg_name,
                 version=1, #TODO idk
-                description='Historical train delay features with weather and reason codes',
+                description=desc,
                 primary_key=pk,
             )
+
+            #print(pk in df.columns)
             delay_fg.insert(df, write_options={'wait_for_job': True}, storage="spark")
             print('Inserted historical data into feature group "train_delay_features"')
     def get(self, fg_name) -> pd.DataFrame:
