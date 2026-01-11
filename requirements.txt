@@ -10,3 +10,4 @@ matplotlib
 contextily
 openmeteo-requests
 retry-requests
+geopandas
