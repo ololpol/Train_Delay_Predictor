@@ -11,3 +11,4 @@ contextily
 openmeteo-requests
 retry-requests
 geopandas
+ipython
