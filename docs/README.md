@@ -1,7 +1,5 @@
 # Dashboard
 
-Feature importance
-![FeatImp](./assets/img/feature_importances.png)
 
 # Predictive model
 
@@ -29,4 +27,9 @@ Mean predicted delay by deviation
 
 Predicted delay distribution by deviation
 ![Uncertainty"](./assets/img/reactive_pred_duration.png)
+
+
+Feature importance
+![FeatImp](./assets/img/feature_importances.png)
+
 
