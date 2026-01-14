@@ -7,6 +7,7 @@ This project builds a **two‑stage (predictive + reactive)** model for train de
 
 The workflow is implemented as a set of Jupyter notebooks plus a shared feature engineering module (`features.py`).
 
+The results are presented at https://ololpol.github.io/Train_Delay_Predictor/ (updated daily)
 ---
 
 ## Repo contents
